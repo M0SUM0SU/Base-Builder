@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dn3bdmp7c44h3"]
+
+[ext_resource type="Texture2D" uid="uid://bvahbp14r0hi7" path="res://Assets/Used/Buildings/Tower_Blue.png" id="1_vmb8x"]
+
+[node name="Building" type="Node2D" unique_id=1509696340]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=719930532]
+texture = ExtResource("1_vmb8x")
+centered = false
+offset = Vector2(-32, -164)
