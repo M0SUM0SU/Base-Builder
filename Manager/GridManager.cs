@@ -15,17 +15,29 @@ public partial class GridManager : Node
 	[Export]
 	private TileMapLayer baseTerrainTilemapLayer;
 
+	private List<TileMapLayer> AllTileMapLayers = new();
+
+
+// READY
     public override void _Ready()
     {
         GameEvents.Instance.BuildingPlaced += OnBuildingPlaced;
+		AllTileMapLayers = GetAllTileMapLayers(baseTerrainTilemapLayer);
+
+
     }
+
 
 
 	public bool IsTilePositionValid(Vector2I tilePosition)
 	{
-		var customData = baseTerrainTilemapLayer.GetCellTileData(tilePosition);
-		if (customData == null) return false;
-		return (bool)customData.GetCustomData("Buildable");
+		foreach (var layer in AllTileMapLayers)
+		{
+			var customData = layer.GetCellTileData(tilePosition);
+			if (customData == null) continue;
+			return (bool)customData.GetCustomData("Buildable");
+		}
+		return false;
 	}
 
 	public bool IsTilePositionBuildable(Vector2I tilePosition)
@@ -97,6 +109,22 @@ public partial class GridManager : Node
 				result.Add(tilePosition);
 			}
 		}
+		return result;
+	}
+
+	private List<TileMapLayer> GetAllTileMapLayers(TileMapLayer rootTileMapLayer)
+	{
+		var result = new List<TileMapLayer>();
+		var children = rootTileMapLayer.GetChildren();
+		children.Reverse();
+		foreach (var child in children)
+		{
+			if (child is TileMapLayer childlayer)
+			{
+				result.AddRange(GetAllTileMapLayers(childlayer));
+			}
+		}
+		result.Add(rootTileMapLayer);
 		return result;
 	}
 
