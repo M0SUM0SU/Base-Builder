@@ -7,6 +7,7 @@
 y_sort_enabled = true
 
 [node name="BuildingComponent" parent="." unique_id=225140495 instance=ExtResource("2_su262")]
+buildingResourcePath = "uid://decnip1lujcx0"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2132121156]
 y_sort_enabled = true
