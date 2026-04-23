@@ -7,7 +7,6 @@ namespace Game;
 
 public partial class Main : Node
 {
-
 	//REFRENCES
 	private GridManager gridManager;
 	private Sprite2D cursor;
@@ -21,11 +20,6 @@ public partial class Main : Node
 	private BuildingResource toPlaceBuidingResource;
 	private BuildingResource villageresource;
 	
-
-	
-	
-
-
 //READY
 	public override void _Ready()
 	{
@@ -37,10 +31,12 @@ public partial class Main : Node
 		placeVillageButton = GetNode<Button>("PlaceVillageButton");
 		ySortRoot = GetNode<Node2D>("YSortRoot");
 
+		cursor.Visible = false;
+
 		placeTowerButton.Pressed += OnPlaceTowerButtonPressed;
 		placeVillageButton.Pressed += OnPlaceVillageButtonPressed;
+		gridManager.ResourceTilesUpdated += OnResouceTilesUpdated;
 
-		cursor.Visible = false;
 
 	}
 //CLICK CLICK
@@ -60,7 +56,9 @@ public partial class Main : Node
 		if (toPlaceBuidingResource != null && cursor.Visible && (!hoveredGridCell.HasValue || hoveredGridCell.Value != gridPosition))
 		{
 			hoveredGridCell = gridPosition;
+			gridManager.ClearHighlightedTiles();
 			gridManager.HighlightExpandedBuildableTiles(hoveredGridCell.Value, toPlaceBuidingResource.BuildableRadius);
+			gridManager.HighlightResourceTiles(hoveredGridCell.Value, toPlaceBuidingResource.ResourceRadius);
 		}
 	}
 
@@ -93,4 +91,8 @@ public partial class Main : Node
 		gridManager.HighlightBuildableTiles();
 	}
 
+	private void OnResouceTilesUpdated(int resourceCount)
+	{
+		GD.Print(resourceCount);
+	}
 }
