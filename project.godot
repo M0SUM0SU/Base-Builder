@@ -40,7 +40,8 @@ naming/scene_name_casing=1
 folder_colors={
 "res://Assets/": "red",
 "res://Resources/": "pink",
-"res://Scenes/": "green"
+"res://Scenes/": "green",
+"res://UI/": "teal"
 }
 
 [input]

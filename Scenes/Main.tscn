@@ -5,6 +5,7 @@
 [ext_resource type="TileSet" uid="uid://crvrs32lkv0bk" path="res://Resources/tiles.tres" id="2_kln2b"]
 [ext_resource type="PackedScene" uid="uid://c1216o8maxflm" path="res://Manager/GridManager.tscn" id="2_rgh2o"]
 [ext_resource type="PackedScene" uid="uid://cx2x33mqj7p6" path="res://Scenes/Building/Base.tscn" id="5_pbw6q"]
+[ext_resource type="PackedScene" uid="uid://ud8i8sttfdhc" path="res://UI/GameUi.tscn" id="6_v1gob"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_r150o"]
 size = Vector2(64, 64)
@@ -40,17 +41,4 @@ tile_set = ExtResource("2_idj7w")
 texture = SubResource("PlaceholderTexture2D_r150o")
 centered = false
 
-[node name="PlaceTowerButton" type="Button" parent="." unique_id=2064560368]
-offset_left = 14.0
-offset_top = 601.0
-offset_right = 131.0
-offset_bottom = 632.0
-text = "Place Tower"
-
-[node name="PlaceVillageButton" type="Button" parent="." unique_id=1338648943]
-offset_left = 14.0
-offset_top = 640.0
-offset_right = 131.0
-offset_bottom = 671.0
-text = "Place Village
-"
+[node name="GameUI" parent="." unique_id=1848589898 instance=ExtResource("6_v1gob")]
