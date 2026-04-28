@@ -2,10 +2,13 @@
 
 [ext_resource type="Script" uid="uid://dmxrxh37ybrx6" path="res://Resources/Building/BuildingResource.cs" id="1_8ahm4"]
 [ext_resource type="PackedScene" uid="uid://dn3bdmp7c44h3" path="res://Scenes/Building/Tower.tscn" id="1_yty4p"]
+[ext_resource type="PackedScene" uid="uid://b57i2711nhkxy" path="res://Scenes/Building/Sprite/TowerSprite2D.tscn" id="2_8yx80"]
 
 [resource]
 script = ExtResource("1_8ahm4")
 DisplayName = "Tower"
+ResourceCost = 4
 BuildableRadius = 3
 BuildingScene = ExtResource("1_yty4p")
+SpriteScene = ExtResource("2_8yx80")
 metadata/_custom_type_script = "uid://dmxrxh37ybrx6"

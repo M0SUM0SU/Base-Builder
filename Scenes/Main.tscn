@@ -4,11 +4,10 @@
 [ext_resource type="TileSet" uid="uid://cj17nvi8nd3ms" path="res://Resources/highlight_tileset.tres" id="2_idj7w"]
 [ext_resource type="TileSet" uid="uid://crvrs32lkv0bk" path="res://Resources/tiles.tres" id="2_kln2b"]
 [ext_resource type="PackedScene" uid="uid://c1216o8maxflm" path="res://Manager/GridManager.tscn" id="2_rgh2o"]
+[ext_resource type="PackedScene" uid="uid://blrmciyr751tk" path="res://Manager/BuildingManager.tscn" id="3_jw32o"]
 [ext_resource type="PackedScene" uid="uid://cx2x33mqj7p6" path="res://Scenes/Building/Base.tscn" id="5_pbw6q"]
 [ext_resource type="PackedScene" uid="uid://ud8i8sttfdhc" path="res://UI/GameUi.tscn" id="6_v1gob"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_r150o"]
-size = Vector2(64, 64)
+[ext_resource type="PackedScene" uid="uid://dkaa2x3g5ihgl" path="res://Scenes/Building/BuildingGhost.tscn" id="8_50glp"]
 
 [node name="Main" type="Node" unique_id=211420636]
 script = ExtResource("1_r150o")
@@ -16,6 +15,12 @@ script = ExtResource("1_r150o")
 [node name="GridManager" parent="." unique_id=1541475318 node_paths=PackedStringArray("highlightTilemapLayer", "baseTerrainTilemapLayer") instance=ExtResource("2_rgh2o")]
 highlightTilemapLayer = NodePath("../HighlightTilemapLayer")
 baseTerrainTilemapLayer = NodePath("../YSortRoot/BaseTerrainTilemapLayer")
+
+[node name="BuildingManager" parent="." unique_id=568085465 node_paths=PackedStringArray("gridManager", "gameUI", "ySortRoot") instance=ExtResource("3_jw32o")]
+gridManager = NodePath("../GridManager")
+gameUI = NodePath("../GameUI")
+ySortRoot = NodePath("../YSortRoot")
+buildingGhostScene = ExtResource("8_50glp")
 
 [node name="YSortRoot" type="Node2D" parent="." unique_id=7520358]
 y_sort_enabled = true
@@ -27,7 +32,7 @@ tile_set = ExtResource("2_kln2b")
 
 [node name="ResourceTilemapLayer" type="TileMapLayer" parent="YSortRoot/BaseTerrainTilemapLayer" unique_id=160964929]
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAABAAcAAQAAAAAAAAASAAgAAQAAAAAAAAAQAAoAAQAAAAAAAAAFAAsAAQAAAAAAAAAMAAYAAQAAAAAAAAATAAYAAQAAAAAAAAAFAAYAAQAAAAAAAAAAAAsAAQAAAAAAAAAAAAYAAQAAAAAAAAABAAYAAQAAAAAAAAACAAYAAQAAAAAAAAACAAcAAQAAAAAAAAAAAAcAAQAAAAAAAAAAAAgAAQAAAAAAAAABAAgAAQAAAAAAAAACAAgAAQAAAAAAAAACAAkAAQAAAAAAAAABAAkAAQAAAAAAAAAAAAkAAQAAAAAAAAAAAAoAAQAAAAAAAAABAAoAAQAAAAAAAAACAAoAAQAAAAAAAAACAAsAAQAAAAAAAAABAAsAAQAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAABAAcAAQAAAAAAAAASAAgAAQAAAAAAAAAQAAoAAQAAAAAAAAAFAAsAAQAAAAAAAAAMAAYAAQAAAAAAAAATAAYAAQAAAAAAAAAFAAYAAQAAAAAAAAAAAAsAAQAAAAAAAAAAAAYAAQAAAAAAAAABAAYAAQAAAAAAAAACAAYAAQAAAAAAAAACAAcAAQAAAAAAAAAAAAcAAQAAAAAAAAAAAAgAAQAAAAAAAAABAAgAAQAAAAAAAAACAAgAAQAAAAAAAAACAAkAAQAAAAAAAAABAAkAAQAAAAAAAAAAAAkAAQAAAAAAAAAAAAoAAQAAAAAAAAABAAoAAQAAAAAAAAACAAoAAQAAAAAAAAACAAsAAQAAAAAAAAABAAsAAQAAAAAAAAAFAAcAAQAAAAAAAAAFAAoAAQAAAAAAAAAMAAcAAQAAAAAAAAAMAAgAAQAAAAAAAAA=")
 tile_set = ExtResource("2_kln2b")
 
 [node name="Base" parent="YSortRoot" unique_id=629176411 instance=ExtResource("5_pbw6q")]
@@ -36,9 +41,5 @@ position = Vector2(576, 512)
 [node name="HighlightTilemapLayer" type="TileMapLayer" parent="." unique_id=1532329566]
 modulate = Color(1, 1, 1, 0.4862745)
 tile_set = ExtResource("2_idj7w")
-
-[node name="Cursor" type="Sprite2D" parent="." unique_id=613152267]
-texture = SubResource("PlaceholderTexture2D_r150o")
-centered = false
 
 [node name="GameUI" parent="." unique_id=1848589898 instance=ExtResource("6_v1gob")]
