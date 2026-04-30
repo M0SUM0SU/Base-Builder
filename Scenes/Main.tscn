@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://blrmciyr751tk" path="res://Manager/BuildingManager.tscn" id="3_jw32o"]
 [ext_resource type="PackedScene" uid="uid://cx2x33mqj7p6" path="res://Scenes/Building/Base.tscn" id="5_pbw6q"]
 [ext_resource type="PackedScene" uid="uid://ud8i8sttfdhc" path="res://UI/GameUi.tscn" id="6_v1gob"]
+[ext_resource type="PackedScene" uid="uid://fhgpv4wc7hwm" path="res://Scenes/GoldMine.tscn" id="7_vy5pj"]
 [ext_resource type="PackedScene" uid="uid://dkaa2x3g5ihgl" path="res://Scenes/Building/BuildingGhost.tscn" id="8_50glp"]
 
 [node name="Main" type="Node" unique_id=211420636]
@@ -37,6 +38,10 @@ tile_set = ExtResource("2_kln2b")
 
 [node name="Base" parent="YSortRoot" unique_id=629176411 instance=ExtResource("5_pbw6q")]
 position = Vector2(576, 512)
+
+[node name="GoldMine" parent="YSortRoot" unique_id=116032683 instance=ExtResource("7_vy5pj")]
+unique_name_in_owner = true
+position = Vector2(1152, 640)
 
 [node name="HighlightTilemapLayer" type="TileMapLayer" parent="." unique_id=1532329566]
 modulate = Color(1, 1, 1, 0.4862745)

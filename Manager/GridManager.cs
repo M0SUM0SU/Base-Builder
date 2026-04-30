@@ -14,6 +14,8 @@ public partial class GridManager : Node
 
 	[Signal]
 	public delegate void ResourceTilesUpdatedEventHandler(int collectedTiles);
+	[Signal]
+	public delegate void GridStateUpdatedEventHandler();
 
 	private HashSet<Vector2I> validBuildableTiles = new();
 	private HashSet<Vector2I> CollectedResourceTiles = new();
@@ -94,11 +96,15 @@ public void HighlightResourceTiles(Vector2I rootCell, int radius)
 	public Vector2I GetMouseGridVectorPosition()
 	{
 		var mousePosition = highlightTilemapLayer.GetGlobalMousePosition();
-		var gridPosition =  mousePosition / 64;
-		gridPosition = gridPosition.Floor();
-		return new Vector2I((int)gridPosition.X, (int)gridPosition.Y);
+		return ConvertWorldPositionToTilePosition(mousePosition);
 	}
 
+	public Vector2I ConvertWorldPositionToTilePosition(Vector2 worldPosition)
+	{
+		var tilePosition =  worldPosition / 64;
+		tilePosition = tilePosition.Floor();
+		return new Vector2I((int)tilePosition.X, (int)tilePosition.Y);
+	}
 
 	private void UpdateValidBuildableTiles(BuildingComponent buildingComponent)
 	{
@@ -107,6 +113,7 @@ public void HighlightResourceTiles(Vector2I rootCell, int radius)
 		var validTiles = GetValidTilesInRadius(rootCell, buildingComponent.buildingResource.BuildableRadius);
 		validBuildableTiles.UnionWith(validTiles);
 		validBuildableTiles.ExceptWith(OccupiedTiles);
+		EmitSignal(SignalName.GridStateUpdated);
 	}
 
 	private void RecalculateGrid(BuildingComponent excludeBuildingComponent)
@@ -114,7 +121,7 @@ public void HighlightResourceTiles(Vector2I rootCell, int radius)
 		OccupiedTiles.Clear();
 		validBuildableTiles.Clear();
 		CollectedResourceTiles.Clear();
-		
+
 		var buildingComponents = GetTree().GetNodesInGroup(nameof(BuildingComponent)).Cast<BuildingComponent>().Where((buildingComponent) => buildingComponent != excludeBuildingComponent);
 		foreach (var buildingComponent in buildingComponents)
 		{
@@ -123,6 +130,7 @@ public void HighlightResourceTiles(Vector2I rootCell, int radius)
 		}
 
 		EmitSignal(SignalName.ResourceTilesUpdated, CollectedResourceTiles.Count);
+		EmitSignal(SignalName.GridStateUpdated);
 	}
 
 	private void UpdateCollectedResourceTiles(BuildingComponent buildingComponent)
@@ -135,6 +143,7 @@ public void HighlightResourceTiles(Vector2I rootCell, int radius)
 		{
 			EmitSignal(SignalName.ResourceTilesUpdated, CollectedResourceTiles.Count);
 		}
+		EmitSignal(SignalName.GridStateUpdated);
 	}
 
 	private List<Vector2I> GetResourceTilesInRadius(Vector2I rootCell, int radius)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmkmost6ff6lv"
-path="res://.godot/imported/GoldMine_Active.png-632ce74636592df153c28e248f78cbb7.ctex"
+uid="uid://4jl7m2xuby2j"
+path="res://.godot/imported/GoldMine_Inactive.png-b6a75267f552da27764d02f4ff0950bc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tiny Swords (Update 010)/Resources/Gold Mine/GoldMine_Active.png"
-dest_files=["res://.godot/imported/GoldMine_Active.png-632ce74636592df153c28e248f78cbb7.ctex"]
+source_file="res://Assets/Used/Buildings/GoldMine_Inactive.png"
+dest_files=["res://.godot/imported/GoldMine_Inactive.png-b6a75267f552da27764d02f4ff0950bc.ctex"]
 
 [params]
 
